@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number conversion</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Convert to/from binary/decimal/hexadecimal</h1>
+    <p>binary: 1001010001,10111</p>
+    <p>octal: 1121,56</p>
+    <p>decimal: 1144,078125</p>
+    <p>hexadecimal: 251,B8</p>
+    <form action="">
+        <label for="">Number to convert</label>
+        <input id="input" type="text" value="251,B8">
+        <br>
+        <label for="convFrom">Convert from:</label>
+        <select id="convFrom" name="convFrom">
+            <option value="2">Binary</option>
+            <option value="8">Octal</option>
+            <option value="10">Decimal</option>
+            <option value="16">Hexadecimal</option>
+        </select>
+        <label for="convTo">Convert to:</label>
+        <select id="convTo" name="convTo">
+            <option value="2">Binary</option>
+            <option value="8">Octal</option>
+            <option value="10">Decimal</option>
+            <option value="16">Hexadecimal</option>
+        </select>
+        <br>
+        <button id="convert" type="">Convert</button>
+    </form>
+    <h3>Result:</h3>
+    <div id="result">
+
+    </div>
+    <h3>Calculation process:</h3>
+    <div id="process">
+
+    </div>
+</body>
+<script src="main.js"></script>
+</html>
