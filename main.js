@@ -122,6 +122,48 @@ function splitToChunksFromBeginning(input, chunkSize){
 }
 
 
+function convertToDecimal(input, convertBase){
+
+    let [fractional, decimal] = input.split(",")
+    // first convert the fractional part
+        processString(`---Fractional part---`)
+        let fractionalArray = Array.from(String(fractional), Number)
+        processString(`Divide ${fractional} into array: ${fractionalArray} `)
+        let fractionalResult = fractionalArray.reduce((previousValue, currentValue) => {
+            let iterationResult = previousValue*convertBase+ currentValue
+            processString(`Start from ${previousValue}, multiply it from ${convertBase} and add current number ${currentValue}, result is ${iterationResult};`)
+            // console.log(previousValue,convertBase, currentValue, iterationResult);
+            return iterationResult
+        },0 )
+        processString(`Fractional part result is ${fractionalResult}.`)
+    
+    // then count the decimal part
+    if (!decimal) { showResult(fractionalResult); return;}
+        processString(`---Decimal part---`)
+        let decimalArray = Array.from(String(decimal), Number)
+        processString(`Divide ${decimal} into array: ${decimalArray} `)
+        let decimalResult = decimalArray.reverse().reduce((previousValue, currentValue) => {
+            let iterationResult = (previousValue+ currentValue)/convertBase
+            processString(`Start from ${previousValue}, divide it from ${convertBase} and add current number ${currentValue}, result is ${iterationResult};`)
+            // console.log(previousValue,convertBase, currentValue, iterationResult);
+            return iterationResult
+        },0 )
+        processString(`decimal part result is ${decimalResult}.`)
+
+    // and finally connect fractional part to decimal part:
+        const finalResult = fractionalResult+decimalResult
+        showResult(finalResult.toString().replace('.', ','))
+        processString(`---Final Result---`)
+        processString(`${fractionalResult} joined to ${decimalResult} = ${finalResult.toString().replace('.', ',')}`)
+
+        // .splice(0,2)
+    
+}
+
+
+
+
+
 
 // converting functions below
 
@@ -181,7 +223,8 @@ function binToOct(input){
 }
 
 function binToDec(input){
-    processString(`---Sorry, this one is not implemented yet---`)
+    processString(`--- this one not tested yet---`)
+    convertToDecimal(input,2)
 };
 
 function binToHex(input){
@@ -261,7 +304,8 @@ function octToBin(input){
     return finalResult;
 };
 function octToDec(input){
-    processString(`---Sorry, this one is not implemented yet---`)
+    convertToDecimal(input, 8)
+
 };
 function octToHex(input){
     processString(`------FIRST, CONVERT OCTAL TO BINARY------`)
@@ -304,9 +348,12 @@ function hexToOct(input){
 
 };
 function hexToDec(input){
-    var output = parseInt(input, 16);
-    showResult(output)
-    processString(`${input} converted using table =  ${output}`)
+    // var output = parseInt(input, 16);
+    // showResult(output)
+    // processString(`${input} converted using table =  ${output}`)
+    // processString(`---Sorry, this one is not implemented yet---`)
+    processString(`--- this one not tested yet---`)
+    convertToDecimal(input,2)
 };
 
 
@@ -337,7 +384,7 @@ function runCoverter(){
     if(from === "2" && to === "16"){binToHex(input);return}
 
     if(from === "8" && to === "2"){octToBin(input);return}
-    if(from === "8" && to === "8"){octToDec(input);return}
+    if(from === "8" && to === "10"){octToDec(input);return}
     if(from === "8" && to === "16"){octToHex(input);return}
 
     if(from === "10" && to === "2"){decToBin(input);return}
